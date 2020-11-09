@@ -1,0 +1,135 @@
+[
+
+   {
+	
+	"title" :"The Lightening Thief",
+	"author" :"Rick Riordan",
+	"genre" : "fantasy",
+	"price" : $12.50
+		
+	},
+   {
+	
+	"title" :"The Sea of Monsters",
+	"author" :"Rick Riordan",
+	"genre" : "fantasy",
+	"price" : $6.50
+	
+	},
+
+   {
+	
+	"title" :"Lucene in Action, Second Edition",
+	"author" :"Michael McCandless",
+	"genre" : "IT",
+	"price" : $36.00
+	
+	},
+    {
+	
+	"title" :"Sophie's World : The Greek Philosophers",
+	"author" :"Jostein Gaarder",
+	"genre" : "Fantasy",
+	"price" : $3.00
+	
+	},
+     
+    {
+	
+	"title" :"Essential C#5.0",
+	"author" :"Mark Michaelis",
+	"genre" : "IT",
+	"price" : $26.00
+	
+	},
+    
+
+     
+    {
+	
+	"title" :"Fire",
+	"author" :"Kristin Cashore",
+	"genre" : "fantasy fiction",
+	"price" : $16.00
+	
+	},
+
+    {
+	
+	"title" :"The Monsterat the End of This Book",
+	"author" :"Jon Stone",
+	"genre" : "Children's Books",
+	"price" : $16.00
+	
+	},
+
+    {
+	
+	"title" :"Eloquent JavaScript, Second Edition",
+	"author" :"Marijn Haverbeke",
+	"genre" : "IT",
+	"price" : $18.00
+	
+	},
+
+    {
+	"title" :"Learning JavaScript Design Patterns",
+	"author" : "Addy Osmani",
+	"genre" : "IT",
+	"price" : $19.00
+	
+	},
+
+
+
+     {
+	
+	"title" :"Programming JavaScript Applications",
+	"author" :"Eric Elliott",
+	"genre" : "IT",
+	"price" : $23.00
+	
+	},
+
+
+     {
+	
+	"title" :"Understanding ECMAScript 6",
+	"author" :"Nicholas C. Zakas",
+	"genre" : "IT",
+	"price" : $20.00
+	
+	},
+
+
+     {
+	
+	"title" :"You Don't Know JS",
+	"author" :"Kyle Simpson",
+	"genre" : "IT",
+	"price" : $20.00
+	
+	},
+
+
+      {
+	
+	"title" :"Git Pocket Guide",
+	"author" : "Richard E. Silverman",
+	"genre" : "IT",
+	"price" : $15.00
+	
+	},
+
+
+     
+	
+
+	
+	}
+]
+
+
+
+
+			
