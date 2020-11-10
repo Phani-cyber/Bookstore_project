@@ -7,6 +7,12 @@ def create_user(first_name,last_name,email, password):
     db.session.add(user)
     db.session.commit()
     return user
+def get_user_by_user_id(user_id):
+    
+    user = User.query.get(user_id)
+
+    return user
+
 
 def get_author_id(first_name,last_name):
     id = db.session.query(Author).filter(Author.first_name == first_name, Author.last_name == last_name).first()
@@ -33,6 +39,11 @@ def create_book(title,genre,price,author_id):
 
 def get_books():
     return Book.query.all()
+
+def get_book_by_id(book_id):
+    book = Book.query.get(book_id)
+    return book
+  
 
 def create_order_item(order_id,book_id,quantity):
     order_item = Order_Item(order_id=order_id,book_id=book_id,quantity=quantity)
