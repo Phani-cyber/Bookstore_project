@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Booksstore{% endblock %}
+
+{% block body %}
+<h3>Display Radio Buttons</h3>
+<form  action="/searching" method="POST">
+    <fieldset class="box">
+        <input type="text" id="search_text" name="search"><br><br>
+    </fieldset>
+    <p>Please search Books by:</p>
+    <input type="radio" id="title" value= 'title' name="search_by" >
+    <label for="title">title</label><br>
+    <input type="radio" id="author" value= 'author' name="search_by">
+    <label for="author">author</label>
+    <div class="submit-button">
+        <input type="submit" value="Submit">
+    </div>
+
+        </form>
+        
+    
+
+        {% endblock %}

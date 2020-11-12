@@ -6,8 +6,8 @@ from crud import *
 import model
 import server
 
-os.system('dropdb ratings')
-os.system('createdb ratings')
+os.system('dropdb project')
+os.system('createdb project')
 
 model.connect_to_db(server.app)
 model.db.create_all()
@@ -27,7 +27,7 @@ for book in book_data:
     author_name = book['author'].split(' ')
     print(author_name)
     #print("alsjdflasdjfjaolksdjflka;sdjflas ldkfklsdfjkl")
-    db_book = create_author(author_name[0],author_name[1])
+    db_author = create_author(author_name[0],author_name[1])
 
 for book in book_data:
     author_name = book['author'].split(' ')
@@ -47,8 +47,18 @@ for book in book_data:
 
 
 ## Create users
-create_user("John",'Doe','john.doe@email.com', 'test')
-create_user('sally','doe',"sally.doe@email.com", 'test')
+create_user('Josh','Chen','josh.chen@email.com', 'test')
+create_user('Neena','Kochar','neena@email.com', 'test')
+create_user('Steven','King','steven.king@email.com', 'test')
+create_user('Nancy','Greenberg','nancy.greengerg@email.com', 'test')
+create_user('Lex','Joe','lex.joe@email.com', 'test')
+create_user('Alexander','Horald','alex.horald@email.com', 'test')
+create_user('Valli','Pataballa',"valli@email.com", 'test')
+create_user('David','Austin','david@email.com', 'test')
+create_user('Bruce','Ernst','bruce.ernst@email.com', 'test')
+create_user('Daniel','Farve','daniel.farve@email.com','test')
+
+
 
 ## Add orders
 create_order(1,20)
