@@ -17,7 +17,7 @@ def get_users():
 
 def get_author_id(first_name,last_name):
     id = db.session.query(Author).filter(Author.first_name == first_name, Author.last_name == last_name).first()
-    #id = Author.query.filter_by(first_name=first_name,last_name=last_name).all()
+
     return id.author_id
 
 def create_author(first_name,last_name):
