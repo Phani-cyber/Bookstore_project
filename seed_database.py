@@ -26,7 +26,7 @@ books_in_db = []
 for book in book_data:
     author_name = book['author'].split(' ')
     print(author_name)
-    #print("alsjdflasdjfjaolksdjflka;sdjflas ldkfklsdfjkl")
+    
     db_author = create_author(author_name[0],author_name[1])
 
 for book in book_data:
