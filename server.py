@@ -73,7 +73,7 @@ def user_login():
 
     if user:
         flash("Successful login")
-        ##create session here
+    
         return render_template('login.html')
     else:
         flash("Login info incorrect, please try again")
