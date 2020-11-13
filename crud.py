@@ -7,11 +7,13 @@ def create_user(first_name,last_name,email, password):
     db.session.add(user)
     db.session.commit()
     return user
+
 def get_user_by_user_id(user_id):
     
     user = User.query.get(user_id)
 
     return user
+
 def get_users():
     return User.query.all()
 
@@ -34,6 +36,14 @@ def get_user_by_email(email):
 def get_authors():
     return Author.query.all()
 
+def existing_author(first_name, last_name):
+    author =  Author.query.filter(Author.first_name == first_name, Author.last_name == last_name).all()
+    if(len(author) == 0):
+        return True
+    else:
+        return False
+
+
 def create_book(title,genre,price,author_id):
     book= Book(title=title,genre=genre,price=price,author_id=author_id)
     db.session.add(book)
@@ -48,13 +58,16 @@ def get_book_by_title(title):
     result = Book.query.filter(Book.title == title).first()
     return result.book_id
 
-def get_book_by_author(author):
+def get_book_by_author(name):
     """ Return book by author"""
-    result = Book.query.filter(Book.author == author).first()
-    return result.id
-    
+    name = name.split(' ')
+    ## get author id from first and last name
+    author =  Author.query.filter(Author.first_name == name[0], Author.last_name == name[1]).all()
 
-    
+    ## Get all books that have author_id equal to author returned by above
+    result = Book.query.filter(Book.author_id == author[0].author_id).all()
+
+    return result
 
     
 def get_book_by_id(book_id):
@@ -86,7 +99,7 @@ def get_order():
 def check_user_login_info(email, password):
     """check if the users email and password match in the database"""
 
-    return User.query.filter((User.email == email) & (User.password == password)).first()    
+    return User.query.filter((User.email == email) & (User.password == password)).all()    
 
 
 def create_rating(rating,book_id,user_id):

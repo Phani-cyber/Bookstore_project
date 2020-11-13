@@ -19,11 +19,13 @@ def homepage():
 
     return render_template('homepage.html')
 
+## base route to show book info
 @app.route('/books')
 def all_books():
     books = get_books()
     return render_template('all_books.html', books=books)
 
+## Extends base book route to show individual book by book_id
 @app.route('/books/<book_id>')
 def show_book(book_id):
     book = get_book_by_id(book_id)
@@ -52,7 +54,7 @@ def register_user():
     user = get_user_by_email(email)
     
     """Check to see if user is already in database"""
-    if user:
+    if (len(user) == 0):
         flash("This email already exists. Try again")
         return render_template('/')
     else:
@@ -71,7 +73,7 @@ def user_login():
     user = check_user_login_info(email, password)
     print(user)
 
-    if user:
+    if (len(user) > 0):
         flash("Successful login")
     
         return render_template('login.html')
@@ -88,18 +90,18 @@ def search():
 def searching():
     search_word = request.form.get('search')
     search_type = request.form.get('search_by')
-    print("Dfasfasdfasdfsdafsdafsdf")
+    print("**********")
     print(search_word)
     if search_type ==  'author':
         search_result = get_book_by_author(search_word)
         book_id = search_result
         print(search_result)
-        return redirect('/books/' + str(book_id))
+        return render_template('all_books.html', books=book_id)
     if search_type == 'title':
         search_result = get_book_by_title(search_word)
         print(search_result)
         return redirect('/books/' + str(search_result))
-    # return render_template('search.html')
+        #return render_template('search.html')
     
 
      

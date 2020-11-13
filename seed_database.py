@@ -27,7 +27,8 @@ for book in book_data:
     author_name = book['author'].split(' ')
     print(author_name)
     
-    db_author = create_author(author_name[0],author_name[1])
+    if(existing_author(author_name[0], author_name[1]) == True):
+        db_author = create_author(author_name[0],author_name[1])
 
 for book in book_data:
     author_name = book['author'].split(' ')
