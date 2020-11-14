@@ -63,6 +63,11 @@ def register_user():
 
         return render_template('login.html')
 
+@app.route("/login", methods=["GET"])
+def show_login():
+    session["logged_in"] = False
+    return render_template("login.html")      
+
 @app.route('/login', methods=['POST'])
 def user_login():
     """Log a user into the website"""
@@ -102,6 +107,38 @@ def searching():
         print(search_result)
         return redirect('/books/' + str(search_result))
         #return render_template('search.html')
+
+
+@app.route("/cart")
+def shopping_cart():
+    if "cart" not in session:
+        flash("There is nothing in your cart.")
+        return render_template("cart.html", display_cart = {}, total = 0)
+    items = session["cart"]
+    dict_of_books = {}
+    total_price = 0
+    for item in items:
+        book = get_book_by_id(item)
+        total_price += book.total_price
+        if book.id in dict_of_books:
+            dict_of_books[book.id]["qty"] += 1
+        else:
+            dict_of_books[book.id] = {"qty":1, "name": book.name, "price":book.price}
+    return render_template("cart.html", display_cart = dict_of_books, total = total_price)
+
+
+    
+@app.route("/add_to_cart/<int:id>")
+def add_to_cart(id):
+    if "cart" not in session:
+        session["cart"] = []
+
+    session["cart"].append(id)
+
+    flash("Successfully added to cart!")
+    return redirect("/cart")
+
+
     
 
      
