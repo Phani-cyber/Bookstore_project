@@ -29,17 +29,16 @@ class Author(db.Model):
         return f'<Author.author_id={self.author_id} first_name={self.first_name} last_name={self.last_name}>'
 
 
-class Order_Item(db.Model):
-    """A order_item."""
+# class Order_Item(db.Model):
+#     """A order_item."""
 
-    __tablename__ = 'order_items'
+#     __tablename__ = 'order_items'
 
-    order_item_id = db.Column(db.Integer, autoincrement=True,nullable=False, primary_key=True)
-    order_id = db.Column(db.Integer,nullable=False)
-    book_id = db.Column(db.Integer,nullable=False)
-    quantity = db.Column(db.Integer,nullable=False)
-    def __repr__(self):
-        return f'<Order_Item.order_item_id={self.order_item_id} quantity={self.quantity}>'  
+#     order_id = db.Column(db.Integer, autoincrement=True,nullable=False, primary_key=True)
+#     book_id = db.Column(db.Integer,nullable=False)
+#     quantity = db.Column(db.Integer,nullable=False)
+#     def __repr__(self):
+#         return f'<Order_Item.order_item_id={self.order_item_id} quantity={self.quantity}>'  
 
 class Order(db.Model):
     """A order."""
@@ -48,6 +47,8 @@ class Order(db.Model):
 
     order_id = db.Column(db.Integer, autoincrement=True,nullable=False,primary_key=True)
     user_id = db.Column(db.Integer,nullable=False)
+    book_id = db.Column(db.Integer,nullable=False)
+    quantity = db.Column(db.Integer,nullable=False)
     total = db.Column(db.Integer,nullable=False)
 
     def __repr__(self):

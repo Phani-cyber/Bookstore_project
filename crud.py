@@ -1,4 +1,6 @@
-from model import db, Book,Author,User,Order_Item,Order,Rating, connect_to_db
+#from model import db, Book,Author,User,Order_Item,Order,Rating, connect_to_db
+from model import db, Book,Author,User,Order,Rating, connect_to_db
+
 # Functions start here!
 
 def create_user(first_name,last_name,email, password):
@@ -84,10 +86,20 @@ def create_order_item(order_id,book_id,quantity):
 def get_order_items():
     return Order_Item.query.all()
 
-def create_order(user_id,total):
-
-    order = Order(user_id=user_id,total=total)
+def create_order(user_id, book_id, quantity, total):
+    order = Order(user_id = user_id, book_id = book_id, quantity = quantity, total = total)
+    db.session.add(order)
+    db.session.commit()
     return order
+
+def get_order_history(user_id):
+    order = Order.query.filter(Order.user_id == user_id).all()
+    return order
+
+# def create_order(user_id,total):
+
+#     order = Order(user_id=user_id,total=total)
+#     return order
 
 def get_order():
     return Order.query.all()

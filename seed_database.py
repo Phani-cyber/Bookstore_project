@@ -66,8 +66,8 @@ create_order(1,20)
 create_order(1,30)
 
 #add order item
-create_order_item(1,1,2)
-create_order_item(2,2,3)
+#create_order_item(1,1,2)
+#create_order_item(2,2,3)
 
 ##Add ratings
 create_rating(2,1,1)

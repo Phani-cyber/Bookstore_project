@@ -65,7 +65,6 @@ def register_user():
 
 @app.route("/login", methods=["GET"])
 def show_login():
-    session["logged_in"] = False
     return render_template("login.html")      
 
 @app.route('/login', methods=['POST'])
@@ -80,7 +79,8 @@ def user_login():
 
     if (len(user) > 0):
         flash("Successful login")
-    
+        session['user_id'] = user[0].user_id
+        session['cart'] = {}
         return render_template('login.html')
     else:
         flash("Login info incorrect, please try again")
@@ -108,35 +108,95 @@ def searching():
         return redirect('/books/' + str(search_result))
         #return render_template('search.html')
 
+@app.route('/add_to_cart',methods=["POST"])
+def add_to_cart():
+    book_id = request.form.get('book_id')
+    quantity = request.form.get('quantity')
+
+    book = get_book_by_id(book_id)
+    current_cart = session['cart']
+    if(book_id not in current_cart):
+        current_cart[book_id] = quantity
+    else:
+        current_cart[book_id] = current_cart[book_id] + quantity
+    session['cart'] = current_cart
+    print(current_cart)
+    return render_template('book_details.html', book=book)
 
 @app.route("/cart")
 def shopping_cart():
     if "cart" not in session:
         flash("There is nothing in your cart.")
         return render_template("cart.html", display_cart = {}, total = 0)
-    items = session["cart"]
+    current_cart = session['cart']
     dict_of_books = {}
     total_price = 0
-    for item in items:
-        book = get_book_by_id(item)
-        total_price += book.total_price
-        if book.id in dict_of_books:
-            dict_of_books[book.id]["qty"] += 1
-        else:
-            dict_of_books[book.id] = {"qty":1, "name": book.name, "price":book.price}
-    return render_template("cart.html", display_cart = dict_of_books, total = total_price)
+    ## getting user info
+    user = User.query.get(session['user_id'])
+    user_name = user.first_name + ' ' + user.last_name
+    for books in current_cart:
+        book_id = books
+        ## Get book info from book_id
+        book = get_book_by_id(book_id)
+        book_details = {'title': book.title, 'price': book.price}
+        ## Add book.price * quantity to total_price
+        total_price += book.price * int(current_cart[books])
+        dict_of_books[book_id] = book_details
 
+    return render_template("cart.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 
-    
-@app.route("/add_to_cart/<int:id>")
-def add_to_cart(id):
+@app.route('/purchase',methods=["POST"])
+def purchase():
+    ## TODO: Check for existing entries for books being rebought and update quantity and price
+    user_id = session['user_id']
+    cart = session['cart']
+    for book in cart:
+        book_id = book
+        quantity = cart[book]
+        ## Get book price
+        book = get_book_by_id(book_id)
+        price = book.price
+        print('lkjasdfljasldjflasdjfljaslkf')
+        total = 0
+        for i in range(int(quantity)):
+            total += price
+        print(total)
+        ## adding data to table.
+        create_order(user_id, book_id, quantity, total)
+        total = 0
+    return render_template("cart.html")
+
+@app.route('/purchase_history')
+def purchase_history():
     if "cart" not in session:
-        session["cart"] = []
+        flash("There is nothing in your cart.")
+        return render_template("cart.html", display_cart = {}, total = 0)
+    dict_of_books = {}
+    ## getting user info
+    user = User.query.get(session['user_id'])
+    user_name = user.first_name + ' ' + user.last_name
+    ##Get order history by user_id
+    order = get_order_history(session['user_id'])
+    dict_of_books = {}
+    total_price = 0
+    for i in range(len(order)):
+        total_price += order[i].total
+        book = get_book_by_id(order[i].book_id)
+        details = {'book_id': order[i].book_id, "title": book.title, "quantity": order[i].quantity, 'total': order[i].total}
+        dict_of_books[i] = details
 
-    session["cart"].append(id)
 
-    flash("Successfully added to cart!")
-    return redirect("/cart")
+    return render_template("purchase.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
+
+# @app.route("/add_to_cart/<int:id>")
+# def add_to_cart(id):
+#     if "cart" not in session:
+#         session["cart"] = []
+
+#     session["cart"].append(id)
+
+#     flash("Successfully added to cart!")
+#     return redirect("/cart")
 
 
     

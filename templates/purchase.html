@@ -4,8 +4,8 @@
 <ul>
 {% for book in display_cart %}
   <li>
-      <h3>{{ display_cart[book].title}}</h3>
-      <p>Price:${{display_cart[book].price}}</p>
+      <h3>{{ display_cart[book]}}</h3>
+      <p>Price:${{display_cart[book].total}}</p>
     </li>
 {% endfor %}
 </ul>
