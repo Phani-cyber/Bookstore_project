@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Booksstore{% endblock %}
-
 {% block body %}
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/static/login2.js"></script> 
+
   <h2>Log Into Your Account</h2>
-  <form action="/login" method="POST">
+  <form >
     <p>
-      Email <input type="text" name="email">
+      Email <input type="text" id='emailInput' name="email">
     </p>
 
     <p>
-      Password <input type="password" name="password">
+      Password <input type="password" id='passwordInput' name="password">
     </p>
 
     <p>
-      <input type="submit">
+      <button type="submit">Submit</button>
     </p>
   </form>
+	<div id="successAlert" role="alert" style="display:none;"></div>
+	<div id="errorAlert" role="alert" style="display:none;"></div>
 
 
 {% endblock %}

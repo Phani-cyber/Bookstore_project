@@ -11,6 +11,8 @@
 <p>
     {{ book.genre }}
   </p>
+  
+  
   <form action='/add_to_cart' method='POST'>
     <button name="book_id" type="submit" value={{book.book_id}}>Add to Cart</button>
     <input type='text' id='quantity' name='quantity'>

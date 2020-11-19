@@ -2,131 +2,149 @@
 
    {
 	
-	"title" :"The Lightening Thief",
-	"author" :"Rick Riordan",
-	"genre" : "fantasy",
-	"price" : 12.50
-		
+	"title" :"Clean Code: A Handbook of Agile Software Craftsmanship ",
+	"author" :"Robert Martin",
+	"genre" : "Computers",
+	"price" : 44.50,
+	"image" : "./Books_image/Clean Code.jpg"	
 	},
    {
 	
-	"title" :"The Sea of Monsters",
-	"author" :"Rick Riordan",
-	"genre" : "fantasy",
-	"price" : 6.50
-	
+	"title" :"Introduction to Computation and Programming Using Python",
+	"author" :"John V. Guttag",
+	"genre" : "Computers",
+	"price" : 46.50,
+	"img" : "./Books_image/Inroduction to Computation and Programming Using Python.jpg"
+
+
 	},
 
    {
 	
-	"title" :"Lucene in Action, Second Edition",
-	"author" :"Michael McCandless",
+	"title" :"The Pragmatic Programmer",
+	"author" :"David Thomas",
 	"genre" : "IT",
-	"price" : 36.00
-	
+	"price" : 36.00,
+	"img" : "./Books_image/The Pragmatic Programmer.jpg"
+
 	},
     {
 	
-	"title" :"Sophie's World : The Greek Philosophers",
-	"author" :"Jostein Gaarder",
-	"genre" : "Fantasy",
-	"price" : 3.00
-	
+	"title" :"Windows 10 Simplified" ,
+	"author" :"Allen Downey",
+	"genre" : "Computers",
+	"price" : 53.00,
+	"img" : "./Books_image/Windows 10 .jpg"
+
+
 	},
      
     {
 	
-	"title" :"Essential C#5.0",
-	"author" :"Mark Michaelis",
+	"title" :"Think Python",
+	"author" :" Allen B. Downey",
 	"genre" : "IT",
-	"price" : 26.00
-	
+	"price" : 26.00,
+	"img" : "./Books_image/Think Python.jpg"
+
+
 	},
     
 
      
     {
 	
-	"title" :"Fire",
+	"title" :"Exam Ref AZ-900 Microsoft Azure Fundamentals ",
 	"author" :"Kristin Cashore",
-	"genre" : "fantasy fiction",
-	"price" : 16.00
-	
+	"genre" : "Computers",
+	"price" : 36.00,
+	"img" : "./Books_image/Microsoft Azure Fundamentals Edition 1.jpg"
+
+
 	},
 
     {
 	
-	"title" :"The Monsterat the End of This Book",
-	"author" :"Jon Stone",
-	"genre" : "Children's Books",
-	"price" : 16.00
-	
+	"title" :"A Time for Mercy",
+	"author" :"John Grisham",
+	"genre" : "Fiction",
+	"price" : 16.00,
+	"img" : "./Books_image/A Time for Mercy.jpg"
+
 	},
 
     {
 	
-	"title" :"Eloquent JavaScript, Second Edition",
-	"author" :"Marijn Haverbeke",
+	"title" :"The Overstory",
+	"author" :"Richard Powers",
 	"genre" : "IT",
-	"price" : 18.00
-	
+	"price" : 18.00,
+	"img" : "./Books_image/The OverStory.jpg"
+
 	},
 
     {
-	"title" :"Learning JavaScript Design Patterns",
-	"author" : "Addy Osmani",
-	"genre" : "IT",
-	"price" : 19.00
-	
+	"title" :"Modern Comfort Food: A Barefoot Contessa Cookbook",
+	"author" : "Ina Garten",
+	"genre" : "Cookbook",
+	"price" : 39.00,
+	"img" : "./Books_image/Modern comfort Food.jpg"
 	},
 
 
 
      {
 	
-	"title" :"Programming JavaScript Applications",
-	"author" :"Eric Elliott",
-	"genre" : "IT",
-	"price" : 23.00
-	
+	"title" :"The Happy in a Hurry Cookbook",
+	"author" :"Steve Doocy",
+	"genre" : "Cookbook",
+	"price" : 23.00,
+	"img" : "./Books_Image/The Happy in a Hurry Cookbook.jpg"
+
 	},
 
 
      {
 	
-	"title" :"Understanding ECMAScript 6",
-	"author" :"Nicholas Zakas",
-	"genre" : "IT",
-	"price" : 20.00
-	
+	"title" :"Midnight Sun",
+	"author" :"Stephenie Meyer",
+	"genre" : "Science and Fantasy",
+	"price" : 20.00,
+	"img" : "./Books_Image/Midnight Sun.jpg"
 	},
 
 
      {
 	
-	"title" :"You Don't Know JS",
-	"author" :"Kyle Simpson",
-	"genre" : "IT",
-	"price" : 20.00
-	
+	"title" :"The Ballad of Songbirds and Snakes",
+	"author" :"Suzanne Collins",
+	"genre" : "Science and Fantasy",
+	"price" : 20.00,
+	"img" : "./Books_Image/The Ballad of Songbirds and Snakes.jpg"
+
 	},
 
 
       {
 	
-	"title" :"Git Pocket Guide",
-	"author" : "Richard Silverman",
-	"genre" : "IT",
-	"price" : 15.00
-	
-	}
+	"title" :"A Promised Land",
+	"author" : "Barack Obama",
+	"genre" : "History",
+	"price" : 45.00,
+	"img" : "./Books_Image/A Pomised Land.jpg"
+
+	 },
+
+      {
+	"title" :"My Own Words",
+	"author" : "Ruth Bader Ginsburg",
+	"genre" : "History",
+	"price" : 35.00,
+    "img" : "./Books_Image/My Own Words.jpg"
 
 
-     
 	
-
-	
-	
+	}	
 ]
 
 

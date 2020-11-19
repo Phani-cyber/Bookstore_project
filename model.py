@@ -8,10 +8,11 @@ class Book(db.Model):
     __tablename__ = 'books'
 
     book_id = db.Column(db.Integer,autoincrement=True, nullable=False ,primary_key=True)
-    title = db.Column(db.String(50),nullable=False)
+    title = db.Column(db.String(200),nullable=False)
     genre = db.Column(db.Text, nullable=False)
     price = db.Column(db.Integer , nullable=False)
     author_id  = db.Column(db.Integer,db.ForeignKey('authors.author_id'),nullable=False)
+    #image  = db.Column(db.String(100),nullable = False)
     def __repr__(self):
         return f'<Book.book_id={self.book_id} title={self.title}>'  
 
@@ -22,8 +23,8 @@ class Author(db.Model):
     __tablename__ = 'authors'
 
     author_id = db.Column(db.Integer, autoincrement=True,nullable=False, primary_key=True)
-    first_name = db.Column(db.String(25), nullable=False)
-    last_name = db.Column(db.String(25), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
     
     def __repr__(self):
         return f'<Author.author_id={self.author_id} first_name={self.first_name} last_name={self.last_name}>'

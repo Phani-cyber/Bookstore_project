@@ -62,8 +62,8 @@ create_user('Daniel','Farve','daniel.farve@email.com','test')
 
 
 ## Add orders
-create_order(1,20)
-create_order(1,30)
+#create_order(1,20)
+#create_order(1,30)
 
 #add order item
 #create_order_item(1,1,2)

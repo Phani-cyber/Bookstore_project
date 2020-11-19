@@ -1,0 +1,22 @@
+{% block body %}
+
+<h1>{{user_info}}'s Cart</h1>
+<ul>
+{% for book in display_cart %}
+  <li>
+      <h3>{{ display_cart[book]}}</h3>
+      <p>Price:${{display_cart[book].total}}</p>
+      <form action="/add_rating" method="POST">
+        <select name="rating" id="rating">
+            <option value="1">1</option>
+            <option value="3">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        <button id='adding_rating' name="book_id" type="submit" value='{{display_cart[book].book_id}}'>Rating</button>
+      </form>
+    </li>
+{% endfor %}
+</ul>
+{% endblock body %}

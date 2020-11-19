@@ -2,7 +2,7 @@
 
 from flask import Flask
 from flask import (Flask, render_template, request, flash, session,
-                   redirect, url_for)
+                   redirect, url_for, jsonify)
 from model import connect_to_db
 from crud import *
 from jinja2 import StrictUndefined
@@ -63,28 +63,27 @@ def register_user():
 
         return render_template('login.html')
 
-@app.route("/login", methods=["GET"])
+@app.route("/login")
 def show_login():
     return render_template("login.html")      
 
-@app.route('/login', methods=['POST'])
-def user_login():
+@app.route('/login_submit', methods=['POST'])
+def login_submit():
     """Log a user into the website"""
 
-    email = request.form.get('email')
-    password = request.form.get('password')
+    email = request.form.get('name')
+    password = request.form.get('email')
 
     user = check_user_login_info(email, password)
     print(user)
-
+    
     if (len(user) > 0):
-        flash("Successful login")
+        name = user[0].first_name + ' ' + user[0].last_name
         session['user_id'] = user[0].user_id
         session['cart'] = {}
-        return render_template('login.html')
-    else:
-        flash("Login info incorrect, please try again")
-        return render_template('homepage.html')
+        return jsonify({'login': name})
+    
+    return jsonify({'invalid': 'Incorrect email or password'}) 
 
 
 @app.route("/search", methods=["GET"])
@@ -149,14 +148,19 @@ def shopping_cart():
 def purchase():
     ## TODO: Check for existing entries for books being rebought and update quantity and price
     user_id = session['user_id']
+    print('asdhflsajdfljasldfjkals jflasjlflsdkjf')
+    print('userid' + str(user_id))
     cart = session['cart']
+    user = User.query.get(session['user_id'])
+    user_name = user.first_name + ' ' + user.last_name
+    dict_of_books = {}
+    total_price = 0
     for book in cart:
         book_id = book
         quantity = cart[book]
         ## Get book price
         book = get_book_by_id(book_id)
         price = book.price
-        print('lkjasdfljasldjflasdjfljaslkf')
         total = 0
         for i in range(int(quantity)):
             total += price
@@ -164,7 +168,7 @@ def purchase():
         ## adding data to table.
         create_order(user_id, book_id, quantity, total)
         total = 0
-    return render_template("cart.html")
+    return render_template("cart.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 
 @app.route('/purchase_history')
 def purchase_history():
@@ -188,6 +192,53 @@ def purchase_history():
 
     return render_template("purchase.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 
+@app.route('/rating')
+def rate_book():
+    if "cart" not in session:
+        flash("There is nothing in your cart.")
+        return render_template("cart.html", display_cart = {}, total = 0)
+    dict_of_books = {}
+    ## getting user info
+    user = User.query.get(session['user_id'])
+    user_name = user.first_name + ' ' + user.last_name
+    ##Get order history by user_id
+    order = get_order_history(session['user_id'])
+    dict_of_books = {}
+    total_price = 0
+    for i in range(len(order)):
+        total_price += order[i].total
+        book = get_book_by_id(order[i].book_id)
+        details = {'book_id': order[i].book_id, "title": book.title, "quantity": order[i].quantity, 'total': order[i].total}
+        dict_of_books[i] = details
+
+
+    return render_template("rating.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
+
+@app.route('/add_rating',methods=["POST"])
+def add_rating():
+    if "cart" not in session:
+        flash("There is nothing in your cart.")
+        return render_template("cart.html", display_cart = {}, total = 0)
+    dict_of_books = {}
+
+    ## getting user info
+    user = User.query.get(session['user_id'])
+    user_name = user.first_name + ' ' + user.last_name
+    ##Get order history by user_id
+    order = get_order_history(session['user_id'])
+    dict_of_books = {}
+    total_price = 0
+    for i in range(len(order)):
+        total_price += order[i].total
+        book = get_book_by_id(order[i].book_id)
+        details = {'book_id': order[i].book_id, "title": book.title, "quantity": order[i].quantity, 'total': order[i].total}
+        dict_of_books[i] = details
+
+    book_id = request.form.get('book_id')
+    ratings = request.form.get('rating')
+    user_id = session['user_id']
+    add_rating = create_rating(ratings,book_id,user_id)
+    return render_template("rating.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 # @app.route("/add_to_cart/<int:id>")
 # def add_to_cart(id):
 #     if "cart" not in session:
