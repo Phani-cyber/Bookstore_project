@@ -249,10 +249,21 @@ def add_rating():
 #     flash("Successfully added to cart!")
 #     return redirect("/cart")
 
+@app.route('/top_rated',methods=["POST"])
+def top_rated():
+    return True
 
-    
+@app.route('/remove_from_cart',methods=["POST"])
+def remove_from_cart():
+    return True
 
-     
+@app.route('/rating_search',methods=["POST"])
+def rating_search():
+    return True
+
+@app.route('/logout',methods=["POST"])
+def logout():
+    return True 
 
 
     
