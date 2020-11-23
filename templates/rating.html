@@ -1,6 +1,6 @@
 {% block body %}
 
-<h1>{{user_info}}'s Cart</h1>
+<h1>{{user_info}}'s Rate Purchased Books</h1>
 <ul>
 {% for book in display_cart %}
   <li>
@@ -19,4 +19,7 @@
     </li>
 {% endfor %}
 </ul>
+<form action='/logout'>
+  <button type='submit' id='logout'>Log out</button>
+</form>
 {% endblock body %}

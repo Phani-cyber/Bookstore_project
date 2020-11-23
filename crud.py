@@ -33,7 +33,7 @@ def create_author(first_name,last_name):
 def get_user_by_email(email):
     """Return a user by email."""
 
-    return User.query.filter(User.email == email).first()
+    return User.query.filter(User.email == email).all()
 
 def get_authors():
     return Author.query.all()

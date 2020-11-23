@@ -1,6 +1,6 @@
 {% block body %}
 
-<h1>{{user_info}}'s Cart</h1>
+<h1>{{user_info}}'s Confirm Purchase</h1>
 <ul>
 {% for book in display_cart %}
   <li>
@@ -9,7 +9,7 @@
     </li>
 {% endfor %}
 </ul>
-<h3>Total cart price: ${{total}}</h3>
+<h3>Total purchase price: ${{total}}</h3>
 <form action='/purchase' method='POST'>
     <button name="book_id" type="submit" value='purchase'>Purchase Books</button>
   </form>

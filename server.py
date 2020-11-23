@@ -54,9 +54,9 @@ def register_user():
     user = get_user_by_email(email)
     
     """Check to see if user is already in database"""
-    if (len(user) == 0):
+    if (len(user) != 0):
         flash("This email already exists. Try again")
-        return render_template('/')
+        return redirect('/')
     else:
         create_user(first_name,last_name,email, password)
         flash("Your account was created successfully")
@@ -261,9 +261,13 @@ def remove_from_cart():
 def rating_search():
     return True
 
-@app.route('/logout',methods=["POST"])
+@app.route('/logout')
 def logout():
-    return True 
+    session['user_id'] = ''
+    session['cart'] = []
+    
+    return redirect('/')
+    #return True 
 
 
     
