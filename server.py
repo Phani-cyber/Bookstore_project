@@ -23,13 +23,57 @@ def homepage():
 @app.route('/books')
 def all_books():
     books = get_books()
-    return render_template('all_books.html', books=books)
+
+    ## Get top 5 rated books
+    all_books = {}
+    book_ids = []
+    av_ratings = []
+    for book in books:
+        ratings = rating_by_id(book.book_id)
+        if(len(ratings) == 0):
+            continue
+        else:
+            total = 0
+            for items in ratings:
+                total += items.rating
+            average_rating = total / len(ratings)
+            average_rating = round(average_rating, 2)
+            all_books[book.book_id] = average_rating
+
+    if(len(all_books) < 5):
+        top_books = []
+        top_books_rating = []
+        for keys in all_books:
+            book_info = get_book_by_id(keys)
+            top_books.append(book_info)
+            top_books_rating.append(all_books[keys])
+    else:
+        sorted_rating = sorted(all_books.items(), key=lambda kv: kv[1])[:5]
+        top_books = []
+        top_books_rating = []
+        for keys in sorted_rating:
+            book_info = get_book_by_id(keys)
+            top_books.append(book_info)
+            top_books_rating.append(all_books[keys])
+
+    return render_template('all_books.html', books=books, top_books = top_books, top_ratings = top_books_rating)
 
 ## Extends base book route to show individual book by book_id
 @app.route('/books/<book_id>')
 def show_book(book_id):
     book = get_book_by_id(book_id)
-    return render_template('book_details.html', book=book)
+    ## Getting ratings from book id
+    ratings = rating_by_id(book_id)
+    if(len(ratings) == 0):
+        rating = "Book has not been rated yet. Be the first to rate after purchase!"
+    else:
+        total = 0
+        for items in ratings:
+            total += items.rating
+        rating = total / len(ratings)
+        rating = round(rating, 2)
+
+    return render_template('book_details.html', book=book, rating=rating)
 
 @app.route('/users')
 def all_users():

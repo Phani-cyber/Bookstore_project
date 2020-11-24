@@ -10,6 +10,18 @@
 
 {% endfor %}
 </ul>
+
+<h3>Top rated books</h3>
+<ul>
+  {% for book in top_books %}
+    <li><a href="/books/{{ book.book_id }}">
+      {{ book.title }}
+    </a></li>
+  
+  
+  {% endfor %}
+  </ul>
+
 <form action='/logout'>
   <button type='submit' id='logout'>Log out</button>
 </form>

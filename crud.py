@@ -105,8 +105,9 @@ def get_order():
     return Order.query.all()
 
 
-
-    
+def rating_by_id(book_id):
+    ratings = Rating.query.filter(Rating.book_id == book_id).all()
+    return ratings
 
 def check_user_login_info(email, password):
     """check if the users email and password match in the database"""
