@@ -28,8 +28,15 @@ def all_books():
     all_books = {}
     book_ids = []
     av_ratings = []
+    top_5_authors = []
+    all_authors = []
+
     for book in books:
         ratings = rating_by_id(book.book_id)
+
+        author = get_author_name_by_id(book.author_id)
+        name = author[0].first_name + ' ' + author[0].last_name
+        all_authors.append(name)
         if(len(ratings) == 0):
             continue
         else:
@@ -39,6 +46,11 @@ def all_books():
             average_rating = total / len(ratings)
             average_rating = round(average_rating, 2)
             all_books[book.book_id] = average_rating
+
+            ## Get author name
+            author = get_author_name_by_id(book.author_id)
+            name = author[0].first_name + ' ' + author[0].last_name
+            top_5_authors.append(name)
 
     if(len(all_books) < 5):
         top_books = []
@@ -56,7 +68,7 @@ def all_books():
             top_books.append(book_info)
             top_books_rating.append(all_books[keys])
 
-    return render_template('all_books.html', books=books, top_books = top_books, top_ratings = top_books_rating)
+    return render_template('all_books.html', books=books, top_books = top_books, top_ratings = top_books_rating, authors = top_5_authors, all_authors = all_authors)
 
 ## Extends base book route to show individual book by book_id
 @app.route('/books/<book_id>')
@@ -141,14 +153,27 @@ def searching():
     print("**********")
     print(search_word)
     if search_type ==  'author':
-        search_result = get_book_by_author(search_word)
-        book_id = search_result
-        print(search_result)
-        return render_template('all_books.html', books=book_id)
+        books, author_name = search_by_author_name(search_word)
+        print(books)
+        print(author_name)
+        if(len(books) == 0):
+            return render_template("no_results.html")
+        else:
+            return render_template('search_results.html', books = books, all_authors = author_name)
     if search_type == 'title':
-        search_result = get_book_by_title(search_word)
+        authors = []
+        search_result = search_book_by_title(search_word)
         print(search_result)
-        return redirect('/books/' + str(search_result))
+        
+        ## print page if no results 
+        if(len(search_result) == 0):
+            return render_template("no_results.html")
+        else:
+            for books in search_result:
+                author = get_author_name_by_id(books.author_id)
+                name = author[0].first_name + ' ' + author[0].last_name
+                authors.append(name)
+            return render_template('search_results.html', books = search_result, all_authors = authors)
         #return render_template('search.html')
 
 @app.route('/add_to_cart',methods=["POST"])
@@ -157,14 +182,28 @@ def add_to_cart():
     quantity = request.form.get('quantity')
 
     book = get_book_by_id(book_id)
+
     current_cart = session['cart']
+
     if(book_id not in current_cart):
         current_cart[book_id] = quantity
     else:
         current_cart[book_id] = current_cart[book_id] + quantity
     session['cart'] = current_cart
     print(current_cart)
-    return render_template('book_details.html', book=book)
+
+    ## Getting ratings from book id
+    ratings = rating_by_id(book_id)
+    if(len(ratings) == 0):
+        rating = "Book has not been rated yet. Be the first to rate after purchase!"
+    else:
+        total = 0
+        for items in ratings:
+            total += items.rating
+        rating = total / len(ratings)
+        rating = round(rating, 2)
+
+    return render_template('book_details.html', book=book, rating = rating)
 
 @app.route("/cart")
 def shopping_cart():
@@ -181,7 +220,7 @@ def shopping_cart():
         book_id = books
         ## Get book info from book_id
         book = get_book_by_id(book_id)
-        book_details = {'title': book.title, 'price': book.price}
+        book_details = {'title': book.title, 'price': book.price, 'quantity': current_cart[book_id], 'book_id': book.book_id}
         ## Add book.price * quantity to total_price
         total_price += book.price * int(current_cart[books])
         dict_of_books[book_id] = book_details
@@ -212,6 +251,7 @@ def purchase():
         ## adding data to table.
         create_order(user_id, book_id, quantity, total)
         total = 0
+        session['cart'] = []
     return render_template("cart.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 
 @app.route('/purchase_history')
@@ -307,10 +347,9 @@ def rating_search():
 
 @app.route('/logout')
 def logout():
-    session['user_id'] = ''
-    session['cart'] = []
+    session.clear()
     
-    return redirect('/')
+    return redirect('/login')
     #return True 
 
 

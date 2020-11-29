@@ -19,6 +19,10 @@ def get_user_by_user_id(user_id):
 def get_users():
     return User.query.all()
 
+def get_author_name_by_id(authorid):
+    """Return a user by email."""
+    return Author.query.filter(Author.author_id == authorid).all()
+
 def get_author_id(first_name,last_name):
     id = db.session.query(Author).filter(Author.first_name == first_name, Author.last_name == last_name).first()
 
@@ -60,6 +64,11 @@ def get_book_by_title(title):
     result = Book.query.filter(Book.title == title).first()
     return result.book_id
 
+def search_book_by_title(title):
+    search = "%{}%".format(title)
+    result = Book.query.filter(Book.title.ilike(search)).all()
+    return result
+
 def get_book_by_author(name):
     """ Return book by author"""
     name = name.split(' ')
@@ -70,6 +79,30 @@ def get_book_by_author(name):
     result = Book.query.filter(Book.author_id == author[0].author_id).all()
 
     return result
+
+## Need to search by first or last name
+def search_by_author_name(name):
+    """ Return book by author"""
+    name = name.split(' ')
+    ## get author id from first and last name
+    if(len(name) == 1):
+        search = "%{}%".format(name[0])
+        author =  Author.query.filter((Author.first_name.ilike(search))|(Author.last_name.ilike(search))).all()
+    elif(len(name) == 2):
+        search = "%{} {}%".format(name[0], name[1])
+        author =  Author.query.filter((Author.first_name.ilike(search))|(Author.last_name.ilike(search))).all()
+
+    ## Get all books that have author_id equal to author returned by above
+    result = []
+    author_name = []
+    for id in range(len(author)):
+        book_info = Book.query.filter(Book.author_id == author[id].author_id).all()
+        name = author[id].first_name + " " + author[id].last_name
+        author_name.append(name)
+        for books in range(len(book_info)):
+            result.append(book_info[books])
+    return result, author_name
+
 
     
 def get_book_by_id(book_id):
