@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Purchase History{% endblock %}
+{% block title %}Rating Search Books{% endblock %}
 
 {% block body %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,34 +36,36 @@
       <div class="col-6 mx-auto">
           <div style="display: flex; align-items: center;">
             <form>
-              <h2>{{user_info}}'s Confirm Purchase</h2>
-              <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Quantity Purchased</th>
-                    <th scope="col">Total Spent</th>
-                  </tr>
-                </thead>
-                <tbody> 
-                  {% for book in display_cart %}
-                  <tr>
-                    <th scope="row">{{loop.index}}</th>
-                    <td><a href="/books/{{ display_cart[book].book_id }}">
-                      {{ display_cart[book].title }}
-                      </a></td>
-                      <td>{{display_cart[book].quantity}}</td>
-                      <td>${{display_cart[book].total}}</td>
+                <h1>Search Results (>=)</h1>
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Author</th>
+                      <th scope="col">Genre</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Average Rating</th>
                     </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-              <h3>Total purchase price: ${{total}}</h3>
-              </form>
+                  </thead>
+                  <tbody> 
+                    {% for book in books %}
+                    <tr>
+                      <th scope="row">{{loop.index}}</th>
+                      <td><a href="/books/{{ book.book_id }}">
+                        {{ book.title }}
+                        </a></td>
+                        <td>{{all_authors[loop.index - 1]}}</td>
+                        <td>{{book.genre}}</td>
+                        <td>${{book.price}}</td>
+                        <td>{{rating[loop.index - 1]}}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                </form>
           </div>
       </div>
   </div>
 </div>
-
 {% endblock body %}

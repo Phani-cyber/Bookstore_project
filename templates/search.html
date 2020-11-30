@@ -21,14 +21,15 @@
       <li class="nav-item">
         <a class="nav-link" href="/purchase_history">Purchase History</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/rating">Rate Books</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/logout">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" action="/logout">Logout</button>
     </form>
   </div>
 </nav>
-
-
 
 <div class="container h-100">
   <div class="row align-items-center h-100">
@@ -65,6 +66,30 @@
                 <div class="col-sm-10">
                   <button type="submit" class="btn btn-primary" value="Search">Search</button>
                 </div>
+              </div>
+            </form>
+
+            <!-- For rank searching-->
+            <form action="/rating_search" method="POST">
+              <h3>Search By Rank (Results Are >= )</h3>
+              <div class="form-group row">
+                <label for="search_text" class="col-sm-2 col-form-label">What Rank?</label>
+                <div class="col-sm-10">
+                  <form action="/rating_search" method="POST">
+                    <select name="rank" id="rank">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary" value="Search">Search Rank</button>
+                </div>
+              </form>
               </div>
             </form>
           </div>

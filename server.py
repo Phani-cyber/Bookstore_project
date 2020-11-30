@@ -60,15 +60,17 @@ def all_books():
             top_books.append(book_info)
             top_books_rating.append(all_books[keys])
     else:
-        sorted_rating = sorted(all_books.items(), key=lambda kv: kv[1])[:5]
+        sorted_rating = sorted(all_books.items(), key=lambda kv: kv[1], reverse=True)[:5]
         top_books = []
         top_books_rating = []
+        print("lasjdflajsdlfjasldjflkjasdlkfjalksdjfklasjdklfjasdf")
+        print(sorted_rating)
         for keys in sorted_rating:
-            book_info = get_book_by_id(keys)
+            book_info = get_book_by_id(keys[0])
             top_books.append(book_info)
-            top_books_rating.append(all_books[keys])
+            top_books_rating.append(keys[1])
 
-    return render_template('all_books.html', books=books, top_books = top_books, top_ratings = top_books_rating, authors = top_5_authors, all_authors = all_authors)
+    return render_template('all_books.html', books=books, top_books = top_books, authors = top_5_authors, all_authors = all_authors, top_ratings = top_books_rating)
 
 ## Extends base book route to show individual book by book_id
 @app.route('/books/<book_id>')
@@ -231,7 +233,6 @@ def shopping_cart():
 def purchase():
     ## TODO: Check for existing entries for books being rebought and update quantity and price
     user_id = session['user_id']
-    print('asdhflsajdfljasldfjkals jflasjlflsdkjf')
     print('userid' + str(user_id))
     cart = session['cart']
     user = User.query.get(session['user_id'])
@@ -241,17 +242,36 @@ def purchase():
     for book in cart:
         book_id = book
         quantity = cart[book]
-        ## Get book price
-        book = get_book_by_id(book_id)
-        price = book.price
-        total = 0
-        for i in range(int(quantity)):
-            total += price
-        print(total)
-        ## adding data to table.
-        create_order(user_id, book_id, quantity, total)
-        total = 0
-        session['cart'] = []
+
+        ## Check to see if the book has been bought
+        bought = get_order_by_name_bookid(user_id, book_id)
+        if(len(bought) == 0):
+            ## Get book price
+            book = get_book_by_id(book_id)
+            price = book.price
+            total = 0
+            for i in range(int(quantity)):
+                total += price
+            print(total)
+            ## adding data to table.
+            create_order(user_id, book_id, quantity, total)
+            
+            total = 0
+        else:
+            current_quantity = bought[0].quantity
+            new_quantity = current_quantity + int(quantity)
+            book = get_book_by_id(book_id)
+            price = book.price
+            total = 0
+            for i in range(int(quantity)):
+                total += price
+            print(total)
+
+            ## adding date
+            update_order(user_id, book_id, new_quantity, total)
+
+    session['cart'] = {}
+        
     return render_template("cart.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 
 @app.route('/purchase_history')
@@ -339,11 +359,65 @@ def top_rated():
 
 @app.route('/remove_from_cart',methods=["POST"])
 def remove_from_cart():
-    return True
+    book_id = request.form.get('book_id')
+    current_cart = session['cart']
+    current_cart.pop(book_id)
+    session['cart'] = current_cart
+    dict_of_books = {}
+    total_price = 0
+    ## getting user info
+    user = User.query.get(session['user_id'])
+    user_name = user.first_name + ' ' + user.last_name
+    for books in current_cart:
+        book_id = books
+        ## Get book info from book_id
+        book = get_book_by_id(book_id)
+        book_details = {'title': book.title, 'price': book.price, 'quantity': current_cart[book_id], 'book_id': book.book_id}
+        ## Add book.price * quantity to total_price
+        total_price += book.price * int(current_cart[books])
+        dict_of_books[book_id] = book_details
+
+    return render_template("cart.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 
 @app.route('/rating_search',methods=["POST"])
 def rating_search():
-    return True
+    rank = request.form.get('rank')
+    
+    books = get_books()
+
+    ## Get top 5 rated books
+    av_ratings = []
+    all_books = []
+    author_name = []
+
+    for book in books:
+        ratings = rating_by_id(book.book_id)
+
+        if(len(ratings) == 0):
+            continue
+        else:
+            total = 0
+            for items in ratings:
+                total += items.rating
+            average_rating = total / len(ratings)
+            average_rating = round(average_rating, 2)
+            if(average_rating >= float(rank)):
+                ## Get average rating
+                av_ratings.append(average_rating)
+
+                ## Get author name
+                author = get_author_name_by_id(book.author_id)
+                name = author[0].first_name + ' ' + author[0].last_name
+                author_name.append(name)
+
+                ## add book info
+                all_books.append(book)
+    
+    if(len(av_ratings) == 0):
+        return render_template("no_results.html")
+    else:
+        return render_template('rating_search.html', books = all_books, all_authors = author_name, rating = av_ratings)
+
 
 @app.route('/logout')
 def logout():

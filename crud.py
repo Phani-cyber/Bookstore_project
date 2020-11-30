@@ -129,6 +129,19 @@ def get_order_history(user_id):
     order = Order.query.filter(Order.user_id == user_id).all()
     return order
 
+def get_order_by_name_bookid(user_id, book_id):
+    order = Order.query.filter(Order.user_id == user_id, Order.book_id == book_id).all()
+    return order
+
+def update_order(user_id, book_id, quantity, total):
+    order = Order.query.filter(Order.user_id == user_id, Order.book_id == book_id).all()
+    order[0].quantity = quantity
+    order[0].total += total
+    if(db.session.commit()):
+        return True
+    else:
+        return False
+
 # def create_order(user_id,total):
 
 #     order = Order(user_id=user_id,total=total)
