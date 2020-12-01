@@ -6,7 +6,7 @@
 	"author" :"Robert Martin",
 	"genre" : "Computers",
 	"price" : 44.50,
-	"image" : "./Books_image/Clean Code.jpg"	
+	"img" : "Books_Image/Clean Code.jpg"	
 	},
    {
 	
@@ -14,7 +14,7 @@
 	"author" :"John V. Guttag",
 	"genre" : "Computers",
 	"price" : 46.50,
-	"img" : "./Books_image/Inroduction to Computation and Programming Using Python.jpg"
+	"img" : "Books_Image/Introduction to Computation and Programming Using PythonEdition 2.jpg"
 
 
 	},
@@ -25,7 +25,7 @@
 	"author" :"David Thomas",
 	"genre" : "IT",
 	"price" : 36.00,
-	"img" : "./Books_image/The Pragmatic Programmer.jpg"
+	"img" : "Books_Image/The Pragmatic Programmer.jpg"
 
 	},
     {
@@ -34,7 +34,7 @@
 	"author" :"Allen Downey",
 	"genre" : "Computers",
 	"price" : 53.00,
-	"img" : "./Books_image/Windows 10 .jpg"
+	"img" : "Books_Image/Windows 10 SimplifiedEdition 1.jpg"
 
 
 	},
@@ -45,7 +45,7 @@
 	"author" :" Allen B. Downey",
 	"genre" : "IT",
 	"price" : 26.00,
-	"img" : "./Books_image/Think Python.jpg"
+	"img" : "Books_Image/Think Python How to Think Like a Computer Scientist Edition 2.jpg"
 
 
 	},
@@ -58,7 +58,7 @@
 	"author" :"Kristin Cashore",
 	"genre" : "Computers",
 	"price" : 36.00,
-	"img" : "./Books_image/Microsoft Azure Fundamentals Edition 1.jpg"
+	"img" : "Books_Image/Microsoft Azure FundamentalsEdition 1.jpg"
 
 
 	},
@@ -69,7 +69,7 @@
 	"author" :"John Grisham",
 	"genre" : "Fiction",
 	"price" : 16.00,
-	"img" : "./Books_image/A Time for Mercy.jpg"
+	"img" : "Books_Image/A Time for Mercy.jpg"
 
 	},
 
@@ -79,7 +79,7 @@
 	"author" :"Richard Powers",
 	"genre" : "IT",
 	"price" : 18.00,
-	"img" : "./Books_image/The OverStory.jpg"
+	"img" : "Books_Image/The Overstory.jpg"
 
 	},
 
@@ -88,7 +88,7 @@
 	"author" : "Ina Garten",
 	"genre" : "Cookbook",
 	"price" : 39.00,
-	"img" : "./Books_image/Modern comfort Food.jpg"
+	"img" : "Books_Image/Modern Comfort Food.jpg"
 	},
 
 
@@ -99,7 +99,7 @@
 	"author" :"Steve Doocy",
 	"genre" : "Cookbook",
 	"price" : 23.00,
-	"img" : "./Books_Image/The Happy in a Hurry Cookbook.jpg"
+	"img" : "Books_Image/The Happy in a Hurry Cookbook.jpg"
 
 	},
 
@@ -110,7 +110,7 @@
 	"author" :"Stephenie Meyer",
 	"genre" : "Science and Fantasy",
 	"price" : 20.00,
-	"img" : "./Books_Image/Midnight Sun.jpg"
+	"img" : "Books_Image/Midnight Sun.jpg"
 	},
 
 
@@ -120,7 +120,7 @@
 	"author" :"Suzanne Collins",
 	"genre" : "Science and Fantasy",
 	"price" : 20.00,
-	"img" : "./Books_Image/The Ballad of Songbirds and Snakes.jpg"
+	"img" : "Books_Image/The Ballad of Songbirds and Snakes.jpg"
 
 	},
 
@@ -131,8 +131,7 @@
 	"author" : "Barack Obama",
 	"genre" : "History",
 	"price" : 45.00,
-	"img" : "./Books_Image/A Pomised Land.jpg"
-
+	"img" : "Books_Image/A Promised Land.jpg"
 	 },
 
       {
@@ -140,7 +139,7 @@
 	"author" : "Ruth Bader Ginsburg",
 	"genre" : "History",
 	"price" : 35.00,
-    "img" : "./Books_Image/My Own Words.jpg"
+    "img" : "Books_Image/My Own Words.jpg"
 
 
 	

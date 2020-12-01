@@ -50,8 +50,8 @@ def existing_author(first_name, last_name):
         return False
 
 
-def create_book(title,genre,price,author_id):
-    book= Book(title=title,genre=genre,price=price,author_id=author_id)
+def create_book(title,genre,price,author_id,image):
+    book= Book(title=title,genre=genre,price=price,author_id=author_id,image=image)
     db.session.add(book)
     db.session.commit()
     return book

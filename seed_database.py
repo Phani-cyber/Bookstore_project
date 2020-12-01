@@ -35,14 +35,16 @@ for book in book_data:
     print(author_name)
     author_id = get_author_id(author_name[0],author_name[1])
     print(author_id)
-    title,genre,price,author  = (book['title'],
+    title,genre,price,author,img  = (book['title'],
                                    book['genre'],
-                                   book['price'],author_id)
+                                   book['price'],
+                                   author_id,
+                                   book['img'])
 
 
     print("title,genre,price,author",title,genre,price,author)
 
-    db_book = create_book(title,genre,price,author)
+    db_book = create_book(title,genre,price,author,img)
     
     books_in_db.append(db_book)
 

@@ -12,7 +12,7 @@ class Book(db.Model):
     genre = db.Column(db.Text, nullable=False)
     price = db.Column(db.Integer , nullable=False)
     author_id  = db.Column(db.Integer,db.ForeignKey('authors.author_id'),nullable=False)
-    #image  = db.Column(db.String(100),nullable = False)
+    image  = db.Column(db.String(100),nullable = False)
     def __repr__(self):
         return f'<Book.book_id={self.book_id} title={self.title}>'  
 
