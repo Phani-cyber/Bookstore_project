@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Booksstore{% endblock %}
+{% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="/static/login.js"></script> 
+
+<div class="container h-100">
+  <div class="row align-items-center h-100">
+      <div class="col-6 mx-auto">
+          <div class="jumbotron" style="display: flex; align-items: center;">
+            <h2>Log Into Your Account</h2>
+              <form>
+                <p>
+                  Email:    <input type="text" id='emailInput' name="email">
+                </p>
+          
+                <p>
+                  Password: <input type="password" id='passwordInput' name="password">
+                </p>
+          
+                <div>
+                  <button type="submit" class="btn btn-primary">Login</button><br>
+                  <p>Don't already have an account? <a href="/">Register</a>.</p>
+                </div>
+            </form>
+          </div>
+          <div id="successAlert" role="alert" style="display:none;"></div>
+          <div id="errorAlert" role="alert" class="alert alert-danger" style="display:none;"></div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

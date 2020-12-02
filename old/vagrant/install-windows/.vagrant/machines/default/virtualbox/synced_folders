@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/src":{"automount":true,"mount_options":["dmode=775,fmode=775","uid=1000","gid=1000"],"guestpath":"/home/vagrant/src","hostpath":"C:/Users/Peri/vagrant/src","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/Peri/vagrant/install-windows","disabled":false,"__vagrantfile":true}}}

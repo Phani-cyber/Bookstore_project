@@ -1,0 +1,152 @@
+[
+
+   {
+	
+	"title" :"Clean Code: A Handbook of Agile Software Craftsmanship ",
+	"author" :"Robert Martin",
+	"genre" : "Computers",
+	"price" : 44.50,
+	"img" : "Books_Image/Clean Code.jpg"	
+	},
+   {
+	
+	"title" :"Introduction to Computation and Programming Using Python",
+	"author" :"John V. Guttag",
+	"genre" : "Computers",
+	"price" : 46.50,
+	"img" : "Books_Image/Introduction to Computation and Programming Using PythonEdition 2.jpg"
+
+
+	},
+
+   {
+	
+	"title" :"The Pragmatic Programmer",
+	"author" :"David Thomas",
+	"genre" : "IT",
+	"price" : 36.00,
+	"img" : "Books_Image/The Pragmatic Programmer.jpg"
+
+	},
+    {
+	
+	"title" :"Windows 10 Simplified" ,
+	"author" :"Allen Downey",
+	"genre" : "Computers",
+	"price" : 53.00,
+	"img" : "Books_Image/Windows 10 SimplifiedEdition 1.jpg"
+
+
+	},
+     
+    {
+	
+	"title" :"Think Python",
+	"author" :" Allen B. Downey",
+	"genre" : "IT",
+	"price" : 26.00,
+	"img" : "Books_Image/Think Python How to Think Like a Computer Scientist Edition 2.jpg"
+
+
+	},
+    
+
+     
+    {
+	
+	"title" :"Exam Ref AZ-900 Microsoft Azure Fundamentals ",
+	"author" :"Kristin Cashore",
+	"genre" : "Computers",
+	"price" : 36.00,
+	"img" : "Books_Image/Microsoft Azure FundamentalsEdition 1.jpg"
+
+
+	},
+
+    {
+	
+	"title" :"A Time for Mercy",
+	"author" :"John Grisham",
+	"genre" : "Fiction",
+	"price" : 16.00,
+	"img" : "Books_Image/A Time for Mercy.jpg"
+
+	},
+
+    {
+	
+	"title" :"The Overstory",
+	"author" :"Richard Powers",
+	"genre" : "IT",
+	"price" : 18.00,
+	"img" : "Books_Image/The Overstory.jpg"
+
+	},
+
+    {
+	"title" :"Modern Comfort Food: A Barefoot Contessa Cookbook",
+	"author" : "Ina Garten",
+	"genre" : "Cookbook",
+	"price" : 39.00,
+	"img" : "Books_Image/Modern Comfort Food.jpg"
+	},
+
+
+
+     {
+	
+	"title" :"The Happy in a Hurry Cookbook",
+	"author" :"Steve Doocy",
+	"genre" : "Cookbook",
+	"price" : 23.00,
+	"img" : "Books_Image/The Happy in a Hurry Cookbook.jpg"
+
+	},
+
+
+     {
+	
+	"title" :"Midnight Sun",
+	"author" :"Stephenie Meyer",
+	"genre" : "Science and Fantasy",
+	"price" : 20.00,
+	"img" : "Books_Image/Midnight Sun.jpg"
+	},
+
+
+     {
+	
+	"title" :"The Ballad of Songbirds and Snakes",
+	"author" :"Suzanne Collins",
+	"genre" : "Science and Fantasy",
+	"price" : 20.00,
+	"img" : "Books_Image/The Ballad of Songbirds and Snakes.jpg"
+
+	},
+
+
+      {
+	
+	"title" :"A Promised Land",
+	"author" : "Barack Obama",
+	"genre" : "History",
+	"price" : 45.00,
+	"img" : "Books_Image/A Promised Land.jpg"
+	 },
+
+      {
+	"title" :"My Own Words",
+	"author" : "Ruth Bader Ginsburg",
+	"genre" : "History",
+	"price" : 35.00,
+    "img" : "Books_Image/My Own Words.jpg"
+
+
+	
+	}	
+]
+
+
+
+
+			

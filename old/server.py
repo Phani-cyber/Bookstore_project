@@ -53,18 +53,17 @@ def all_books():
             top_5_authors.append(name)
 
     if(len(all_books) < 5):
-        sorted_rating = sorted(all_books.items(), key=lambda kv: kv[1], reverse=True)[:len(all_books)]
         top_books = []
         top_books_rating = []
-        for keys in sorted_rating:
-            book_info = get_book_by_id(keys[0])
+        for keys in all_books:
+            book_info = get_book_by_id(keys)
             top_books.append(book_info)
-            top_books_rating.append(keys[1])
+            top_books_rating.append(all_books[keys])
     else:
         sorted_rating = sorted(all_books.items(), key=lambda kv: kv[1], reverse=True)[:5]
         top_books = []
         top_books_rating = []
-        #print("lasjdflajsdlfjasldjflkjasdlkfjalksdjfklasjdklfjasdf")
+        print("lasjdflajsdlfjasldjflkjasdlkfjalksdjfklasjdklfjasdf")
         print(sorted_rating)
         for keys in sorted_rating:
             book_info = get_book_by_id(keys[0])
@@ -153,7 +152,7 @@ def search():
 def searching():
     search_word = request.form.get('search')
     search_type = request.form.get('search_by')
-    #print("**********")
+    print("**********")
     print(search_word)
     if search_type ==  'author':
         books, author_name = search_by_author_name(search_word)
@@ -232,7 +231,7 @@ def shopping_cart():
 
 @app.route('/purchase',methods=["POST"])
 def purchase():
-    ## TODO: Check for existing entries for books being rebought and update quantity and price
+
     user_id = session['user_id']
     print('userid' + str(user_id))
     cart = session['cart']
@@ -321,9 +320,6 @@ def rate_book():
 
 @app.route('/add_rating',methods=["POST"])
 def add_rating():
-    if "cart" not in session:
-        flash("There is nothing in your cart.")
-        return render_template("cart.html", display_cart = {}, total = 0)
     dict_of_books = {}
 
     ## getting user info
@@ -342,6 +338,9 @@ def add_rating():
     book_id = request.form.get('book_id')
     ratings = request.form.get('rating')
     user_id = session['user_id']
+    print(user_id)
+    print(ratings)
+    print(book_id)
     add_rating = create_rating(ratings,book_id,user_id)
     return render_template("rating.html", display_cart = dict_of_books, total = total_price, user_info = user_name)
 # @app.route("/add_to_cart/<int:id>")
