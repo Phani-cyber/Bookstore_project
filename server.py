@@ -231,7 +231,7 @@ def shopping_cart():
 
 @app.route('/purchase',methods=["POST"])
 def purchase():
-
+    ## TODO: Check for existing entries for books being rebought and update quantity and price
     user_id = session['user_id']
     print('userid' + str(user_id))
     cart = session['cart']
