@@ -64,7 +64,7 @@ def all_books():
         sorted_rating = sorted(all_books.items(), key=lambda kv: kv[1], reverse=True)[:5]
         top_books = []
         top_books_rating = []
-        #print("lasjdflajsdlfjasldjflkjasdlkfjalksdjfklasjdklfjasdf")
+        print("lasjdflajsdlfjasldjflkjasdlkfjalksdjfklasjdklfjasdf")
         print(sorted_rating)
         for keys in sorted_rating:
             book_info = get_book_by_id(keys[0])
@@ -153,7 +153,7 @@ def search():
 def searching():
     search_word = request.form.get('search')
     search_type = request.form.get('search_by')
-    #print("**********")
+    print("**********")
     print(search_word)
     if search_type ==  'author':
         books, author_name = search_by_author_name(search_word)
