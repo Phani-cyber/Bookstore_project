@@ -1,5 +1,6 @@
 # Online Bookstore_Project
-Online Bookstore
+
+Online Bookstore:
 
 A simple online book store using JavaScript, , HTML, Jinja, SQLAlchemy, Python, Flask, Ajax, Jquery
 
