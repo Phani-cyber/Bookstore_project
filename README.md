@@ -2,7 +2,16 @@
 
 Online Bookstore:
 
-A simple online book store using JavaScript, , HTML, Jinja, SQLAlchemy, Python, Flask, Ajax, Jquery
+
+Technology:
+A simple online book store using 
+HTML, 
+Jinja, 
+SQLAlchemy, 
+Python, 
+Flask, 
+Ajax, 
+Jquery
 
 It allows a user to:
 
