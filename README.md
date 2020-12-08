@@ -4,14 +4,23 @@ Online Bookstore:
 
 
 Technology:
-A simple online book store using 
+
+A simple online book store using
+
 HTML, 
-Jinja, 
-SQLAlchemy, 
-Python, 
+
+Jinja,
+
+SQLAlchemy
+
+Python,
+
 Flask, 
+
 Ajax, 
+
 Jquery
+
 
 It allows a user to:
 
